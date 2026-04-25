@@ -1,6 +1,6 @@
 "use client";
 
-import { AnimatePresence, motion, useMotionValueEvent, useScroll, useTransform } from "framer-motion";
+import { AnimatePresence, motion, useMotionValueEvent, useReducedMotion, useScroll, useTransform } from "framer-motion";
 import type { Variants } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 import { FadeUp } from "@/components/FadeUp";
@@ -117,8 +117,8 @@ const staggerItem: Variants = {
   },
 };
 
-const buttonTransition = { type: "spring", stiffness: 400, damping: 22 } as const;
-const cardTransition = { type: "spring", stiffness: 280, damping: 18 } as const;
+const buttonTransition = { type: "spring", stiffness: 320, damping: 26 } as const;
+const cardTransition = { type: "spring", stiffness: 240, damping: 22 } as const;
 
 function InstagramIcon({ className = "w-5 h-5" }: { className?: string }) {
   return (
@@ -130,7 +130,7 @@ function InstagramIcon({ className = "w-5 h-5" }: { className?: string }) {
   );
 }
 
-function ReelVideoCard({ src }: { src: string }) {
+function ReelVideoCard({ src, reduceMotion }: { src: string; reduceMotion: boolean }) {
   const videoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
@@ -149,8 +149,8 @@ function ReelVideoCard({ src }: { src: string }) {
     <motion.div
       className="aspect-[9/16] rounded-2xl overflow-hidden mx-auto w-full max-w-xs md:max-w-none"
       variants={staggerItem}
-      whileHover={{ y: -6 }}
-      transition={cardTransition}
+      whileHover={reduceMotion ? undefined : { y: -6 }}
+      transition={reduceMotion ? { duration: 0 } : cardTransition}
     >
       <video
         ref={videoRef}
@@ -194,6 +194,7 @@ function CameraIcon() {
 }
 
 export default function HomePage() {
+  const reduceMotion = !!useReducedMotion();
   const [isScrolled, setIsScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [activeTab, setActiveTab] = useState<keyof typeof menuData>("WRAPS");
@@ -235,14 +236,14 @@ export default function HomePage() {
   });
 
   return (
-    <main className="bg-mist text-midnight">
+    <main className="bg-mist text-midnight overflow-x-hidden">
       <motion.nav
         className="fixed top-0 z-50 w-full h-16"
         animate={{
-          backgroundColor: isScrolled ? "rgba(25, 25, 112, 0.94)" : "transparent",
-          backdropFilter: isScrolled ? "blur(14px)" : "none",
+          backgroundColor: isScrolled ? "rgba(25, 25, 112, 0.94)" : "rgba(25, 25, 112, 0)",
+          backdropFilter: isScrolled ? "blur(14px)" : "blur(0px)",
         }}
-        transition={{ duration: 0.35, ease: "easeInOut" }}
+        transition={reduceMotion ? { duration: 0 } : { duration: 0.35, ease: "easeInOut" }}
       >
         <div className="max-w-6xl mx-auto px-6 h-full flex items-center justify-between">
           <a
@@ -365,9 +366,9 @@ export default function HomePage() {
                   letterSpacing: "0.05em",
                   boxShadow: "0 8px 36px rgba(245,197,24,0.38)",
                 }}
-                whileHover={{ scale: 1.06 }}
-                whileTap={{ scale: 0.95 }}
-                transition={buttonTransition}
+                whileHover={reduceMotion ? undefined : { scale: 1.04 }}
+                whileTap={reduceMotion ? undefined : { scale: 0.98 }}
+                transition={reduceMotion ? { duration: 0 } : buttonTransition}
               >
                 Explore Our Menu
               </motion.a>
@@ -411,8 +412,8 @@ export default function HomePage() {
                   key={item.id}
                   className="mx-auto h-[18rem] w-[18rem] rounded-full flex items-center justify-center"
                   variants={staggerItem}
-                  whileHover={{ y: -12, scale: 1.04 }}
-                  transition={cardTransition}
+                  whileHover={reduceMotion ? undefined : { y: -10, scale: 1.03 }}
+                  transition={reduceMotion ? { duration: 0 } : cardTransition}
                 >
                   <img
                     src={item.image}
@@ -448,7 +449,7 @@ export default function HomePage() {
               viewport={{ once: true, margin: "-64px" }}
             >
               {reels.map((src) => (
-                <ReelVideoCard key={src} src={src} />
+                <ReelVideoCard key={src} src={src} reduceMotion={reduceMotion} />
               ))}
             </motion.div>
           </FadeUp>
@@ -516,10 +517,10 @@ export default function HomePage() {
                       variants={staggerItem}
                       whileHover={{
                         borderColor: "rgba(25,25,112,0.18)",
-                        y: -2,
+                        y: -1,
                         boxShadow: "0 6px 18px rgba(25,25,112,0.1)",
                       }}
-                      transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                      transition={reduceMotion ? { duration: 0 } : { type: "spring", stiffness: 240, damping: 22 }}
                     >
                       <div className="flex items-center gap-2.5">
                         <span
@@ -555,8 +556,8 @@ export default function HomePage() {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="mt-8 inline-flex items-center gap-2.5 rounded-full px-5 py-2.5 text-white border border-[rgba(255,255,255,0.15)] bg-[rgba(255,255,255,0.07)] text-[0.875rem]"
-                whileHover={{ borderColor: "#F5C518", color: "#F5C518", backgroundColor: "rgba(245,197,24,0.08)" }}
-                transition={{ duration: 0.2 }}
+                  whileHover={reduceMotion ? undefined : { borderColor: "#F5C518", color: "#F5C518", backgroundColor: "rgba(245,197,24,0.08)" }}
+                  transition={reduceMotion ? { duration: 0 } : { duration: 0.2 }}
               >
                 <InstagramIcon className="w-4 h-4" />
                 @pov_tubai
@@ -586,22 +587,22 @@ export default function HomePage() {
             <div className="mt-8 flex flex-wrap gap-2">
               <motion.div
                 className="bg-[rgba(255,255,255,0.07)] border border-[rgba(255,255,255,0.15)] rounded-full px-4 py-2 text-[0.8125rem] text-[rgba(255,255,255,0.7)]"
-                whileHover={{ borderColor: "#F5C518", color: "white", backgroundColor: "rgba(245,197,24,0.08)" }}
-                transition={{ duration: 0.2 }}
+                whileHover={reduceMotion ? undefined : { borderColor: "#F5C518", color: "white", backgroundColor: "rgba(245,197,24,0.08)" }}
+                transition={reduceMotion ? { duration: 0 } : { duration: 0.2 }}
               >
                 🔥 100% Recipes from Scratch
               </motion.div>
               <motion.div
                 className="bg-[rgba(255,255,255,0.07)] border border-[rgba(255,255,255,0.15)] rounded-full px-4 py-2 text-[0.8125rem] text-[rgba(255,255,255,0.7)]"
-                whileHover={{ borderColor: "#F5C518", color: "white", backgroundColor: "rgba(245,197,24,0.08)" }}
-                transition={{ duration: 0.2 }}
+                whileHover={reduceMotion ? undefined : { borderColor: "#F5C518", color: "white", backgroundColor: "rgba(245,197,24,0.08)" }}
+                transition={reduceMotion ? { duration: 0 } : { duration: 0.2 }}
               >
                 🎬 Behind the Scenes on Instagram
               </motion.div>
               <motion.div
                 className="bg-[rgba(255,255,255,0.07)] border border-[rgba(255,255,255,0.15)] rounded-full px-4 py-2 text-[0.8125rem] text-[rgba(255,255,255,0.7)]"
-                whileHover={{ borderColor: "#F5C518", color: "white", backgroundColor: "rgba(245,197,24,0.08)" }}
-                transition={{ duration: 0.2 }}
+                whileHover={reduceMotion ? undefined : { borderColor: "#F5C518", color: "white", backgroundColor: "rgba(245,197,24,0.08)" }}
+                transition={reduceMotion ? { duration: 0 } : { duration: 0.2 }}
               >
                 📍 New Town, Kolkata
               </motion.div>
@@ -691,9 +692,9 @@ export default function HomePage() {
                   rel="noopener noreferrer"
                   className="mt-8 block w-full text-center rounded-full bg-gold py-4 text-midnight uppercase"
                   style={{ fontSize: "0.9375rem", fontWeight: 700, letterSpacing: "0.05em", boxShadow: "0 6px 24px rgba(245,197,24,0.30)" }}
-                  whileHover={{ scale: 1.06 }}
-                  whileTap={{ scale: 0.95 }}
-                  transition={buttonTransition}
+                  whileHover={reduceMotion ? undefined : { scale: 1.04 }}
+                  whileTap={reduceMotion ? undefined : { scale: 0.98 }}
+                  transition={reduceMotion ? { duration: 0 } : buttonTransition}
                 >
                   Get Directions →
                 </motion.a>
@@ -743,8 +744,8 @@ export default function HomePage() {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="mt-5 inline-flex rounded-full border border-[rgba(255,255,255,0.12)] px-4 py-2 text-[0.875rem] text-[rgba(255,255,255,0.75)]"
-                whileHover={{ borderColor: "#F5C518", color: "#F5C518", backgroundColor: "rgba(245,197,24,0.06)" }}
-                transition={{ duration: 0.2 }}
+                whileHover={reduceMotion ? undefined : { borderColor: "#F5C518", color: "#F5C518", backgroundColor: "rgba(245,197,24,0.06)" }}
+                transition={reduceMotion ? { duration: 0 } : { duration: 0.2 }}
               >
                 @wheelz_cafe
               </motion.a>

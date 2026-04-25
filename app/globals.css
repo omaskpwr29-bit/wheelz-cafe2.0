@@ -13,6 +13,8 @@
 html {
   font-size: 16px;
   scroll-behavior: smooth;
+  overflow-x: hidden;
+  width: 100%;
 }
 
 body {
@@ -23,6 +25,7 @@ body {
   background-color: #eceff1;
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
+  width: 100%;
 }
 
 h1,
