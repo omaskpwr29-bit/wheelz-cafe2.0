@@ -147,7 +147,7 @@ function ReelVideoCard({ src }: { src: string }) {
 
   return (
     <motion.div
-      className="aspect-[9/16] rounded-2xl overflow-hidden"
+      className="aspect-[9/16] rounded-2xl overflow-hidden mx-auto w-full max-w-xs md:max-w-none"
       variants={staggerItem}
       whileHover={{ y: -6 }}
       transition={cardTransition}
@@ -330,7 +330,7 @@ export default function HomePage() {
 
         <motion.div style={{ opacity: heroOpacity }} className="absolute inset-0">
           <div className="max-w-6xl mx-auto px-6 h-full flex flex-col items-center justify-center text-center">
-            <div className="max-w-3xl mx-auto">
+            <div className="max-w-3xl mx-auto px-4 sm:px-6">
             <FadeUp>
               <p className="uppercase text-gold text-[0.75rem] font-semibold tracking-[0.14em]">
                 NEWTOWN · KOLKATA
@@ -341,7 +341,7 @@ export default function HomePage() {
               <h1
                 className="mt-4 text-white"
                 style={{
-                  fontSize: "clamp(3.25rem, 8vw, 5.75rem)",
+                  fontSize: "clamp(2.25rem, 10vw, 5.75rem)",
                   letterSpacing: "-0.025em",
                 }}
               >
@@ -350,7 +350,7 @@ export default function HomePage() {
             </FadeUp>
 
             <FadeUp delay={0.28}>
-              <p className="mt-5 text-[1.25rem] font-normal text-[rgba(255,255,255,0.75)]">
+              <p className="mt-5 text-base md:text-xl font-normal text-[rgba(255,255,255,0.75)]">
                 Bold Flavors. Street Soul.
               </p>
             </FadeUp>
@@ -358,7 +358,7 @@ export default function HomePage() {
             <FadeUp delay={0.42}>
               <motion.a
                 href="#menu"
-                className="mt-10 inline-flex rounded-full bg-gold px-9 py-4 text-midnight uppercase"
+                className="mt-10 inline-flex w-full sm:w-auto rounded-full bg-gold px-9 py-4 text-midnight uppercase"
                 style={{
                   fontSize: "0.9375rem",
                   fontWeight: 700,
@@ -386,11 +386,11 @@ export default function HomePage() {
         </motion.div>
       </section>
 
-      <section id="serve" className="bg-white py-28">
-        <div className="max-w-6xl mx-auto px-6">
+      <section id="serve" className="bg-white py-16 md:py-28">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6">
           <FadeUp className="text-center max-w-xl mx-auto">
             <p className="text-gold text-[0.75rem] font-semibold uppercase tracking-[0.12em] mb-3">OUR SPECIALTIES</p>
-            <h2 className="text-midnight" style={{ fontSize: "clamp(2rem, 4vw, 3rem)", letterSpacing: "-0.015em" }}>
+            <h2 className="text-midnight" style={{ fontSize: "clamp(1.75rem, 5vw, 3rem)", letterSpacing: "-0.015em" }}>
               What We Serve
             </h2>
             <p className="mt-4 text-muted">
@@ -400,7 +400,7 @@ export default function HomePage() {
 
           <FadeUp className="mt-14">
             <motion.div
-              className="grid grid-cols-1 lg:grid-cols-3 gap-8"
+              className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-8"
               variants={staggerContainer}
               initial="hidden"
               whileInView="show"
@@ -418,6 +418,7 @@ export default function HomePage() {
                     src={item.image}
                     alt="Wheelz Cafe specialty"
                     className="h-[92%] w-[92%] object-contain"
+                    style={item.id === "specialty-3" ? { transform: "scale(1.4)", transformOrigin: "center center" } : undefined}
                   />
                 </motion.div>
               ))}
@@ -426,11 +427,11 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section id="reels" className="bg-midnight py-28 border-t border-[rgba(255,255,255,0.07)]">
-        <div className="max-w-6xl mx-auto px-6">
+      <section id="reels" className="bg-midnight py-16 md:py-28 border-t border-[rgba(255,255,255,0.07)]">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6">
           <FadeUp className="text-center max-w-lg mx-auto">
             <p className="text-gold text-[0.75rem] font-semibold uppercase tracking-[0.12em] mb-3">FOLLOW ALONG</p>
-            <h2 className="text-white" style={{ fontSize: "clamp(2rem, 4vw, 3rem)", letterSpacing: "-0.015em" }}>
+            <h2 className="text-white" style={{ fontSize: "clamp(1.75rem, 5vw, 3rem)", letterSpacing: "-0.015em" }}>
               Catch Our Reels
             </h2>
             <p className="mt-4 text-[rgba(255,255,255,0.65)]">
@@ -440,7 +441,7 @@ export default function HomePage() {
 
           <FadeUp className="mt-14">
             <motion.div
-              className="grid grid-cols-1 lg:grid-cols-3 gap-8"
+              className="grid grid-cols-1 md:grid-cols-3 gap-5 md:gap-8"
               variants={staggerContainer}
               initial="hidden"
               whileInView="show"
@@ -454,24 +455,24 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section id="menu" className="bg-mist py-28">
-        <div className="max-w-6xl mx-auto px-6">
+      <section id="menu" className="bg-mist py-16 md:py-28">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6">
           <FadeUp className="text-center max-w-md mx-auto">
             <p className="text-gold text-[0.75rem] font-semibold uppercase tracking-[0.12em] mb-3">EXPLORE</p>
-            <h2 className="text-midnight" style={{ fontSize: "clamp(2rem, 4vw, 3rem)", letterSpacing: "-0.015em" }}>
+            <h2 className="text-midnight" style={{ fontSize: "clamp(1.75rem, 5vw, 3rem)", letterSpacing: "-0.015em" }}>
               Our Menu
             </h2>
             <p className="mt-4 text-muted">Handcrafted with bold flavors - pick your favorite.</p>
           </FadeUp>
 
           <FadeUp className="mt-12">
-            <div className="overflow-x-auto hide-scrollbar pb-2">
+            <div className="overflow-x-auto hide-scrollbar pb-2 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
               <div className="mx-auto w-max flex gap-2">
                 {(Object.keys(menuData) as Array<keyof typeof menuData>).map((tab) => (
                   <button
                     key={tab}
                     onClick={() => setActiveTab(tab)}
-                    className={`relative rounded-full px-5 py-2.5 uppercase text-[0.8125rem] font-semibold tracking-[0.08em] border ${
+                    className={`relative flex-shrink-0 rounded-full px-5 py-2.5 uppercase text-[0.8125rem] font-semibold tracking-[0.08em] border ${
                       activeTab === tab ? "border-transparent" : "border-[rgba(25,25,112,0.15)]"
                     }`}
                   >
@@ -536,71 +537,100 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="bg-midnight py-28 border-t border-[rgba(255,255,255,0.07)]">
-        <div className="max-w-6xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+      <section className="bg-midnight py-16 md:py-28 border-t border-[rgba(255,255,255,0.07)]">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 flex flex-col md:flex-row gap-10 md:gap-16 items-center">
           <FadeUp x={-64} className="text-center md:text-left">
-            <div className="mx-auto md:mx-0 w-64 h-64 rounded-full p-1 border-4 border-gold" style={{ boxShadow: "0 0 0 8px rgba(245,197,24,0.12)" }}>
+            <div className="mx-auto md:mx-0 w-48 h-48 md:w-64 md:h-64 rounded-full p-1 border-4 border-gold" style={{ boxShadow: "0 0 0 8px rgba(245,197,24,0.12)" }}>
               <div className="w-full h-full rounded-full flex items-center justify-center" style={{ background: "linear-gradient(135deg, #191970 0%, #0D0D2B 100%)" }}>
-                <svg viewBox="0 0 24 24" className="w-24 h-24 text-[rgba(255,255,255,0.2)]" fill="none" aria-hidden="true">
-                  <circle cx="12" cy="8" r="4" fill="currentColor" />
-                  <path d="M5 20C5.8 16.6 8.2 14.8 12 14.8C15.8 14.8 18.2 16.6 19 20" fill="currentColor" />
-                </svg>
+                <img
+                  src="https://i.ibb.co/q3SfYyTW/649302101-17869551198571349-202994763254197813-n-2.jpg"
+                  alt="Animesh Saha"
+                  className="w-full h-full object-cover rounded-full"
+                />
               </div>
             </div>
-            <motion.a
-              href="https://www.instagram.com/pov_tubai"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="mt-8 inline-flex items-center gap-2.5 rounded-full px-5 py-2.5 text-white border border-[rgba(255,255,255,0.15)] bg-[rgba(255,255,255,0.07)] text-[0.875rem]"
-              whileHover={{ borderColor: "#F5C518", color: "#F5C518", backgroundColor: "rgba(245,197,24,0.08)" }}
-              transition={{ duration: 0.2 }}
-            >
-              <InstagramIcon className="w-4 h-4" />
-              @pov_tubai
-            </motion.a>
+            <div className="text-center">
+              <motion.a
+                href="https://www.instagram.com/pov_tubai"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-8 inline-flex items-center gap-2.5 rounded-full px-5 py-2.5 text-white border border-[rgba(255,255,255,0.15)] bg-[rgba(255,255,255,0.07)] text-[0.875rem]"
+                whileHover={{ borderColor: "#F5C518", color: "#F5C518", backgroundColor: "rgba(245,197,24,0.08)" }}
+                transition={{ duration: 0.2 }}
+              >
+                <InstagramIcon className="w-4 h-4" />
+                @pov_tubai
+              </motion.a>
+              <p className="text-[0.75rem] text-[rgba(255,255,255,0.3)] text-center mt-3 hidden md:block">
+                Behind-the-scenes · Reels · The real story
+              </p>
+            </div>
           </FadeUp>
 
           <FadeUp x={64}>
-            <p className="text-gold text-[0.75rem] font-semibold uppercase tracking-[0.12em] mb-3">THE PERSON BEHIND THE CART</p>
-            <h2 className="text-white" style={{ fontSize: "clamp(2rem, 4vw, 3rem)", letterSpacing: "-0.015em" }}>
+            <p className="text-gold text-[0.75rem] font-semibold uppercase tracking-[0.12em] mb-3">THE MIND BEHIND THE CART</p>
+            <h2 className="text-white" style={{ fontSize: "clamp(1.75rem, 5vw, 3rem)", letterSpacing: "-0.015em" }}>
               Meet the Founder
             </h2>
             <p className="mt-2 text-gold text-[1.75rem]" style={{ fontFamily: "var(--font-dm-serif)" }}>
               Animesh Saha
             </p>
+            <p className="mt-2 mb-6 text-[0.875rem] italic text-[rgba(255,255,255,0.55)] tracking-[0.06em]">Not a Chef — An Artist with Flavours</p>
             <div className="w-14 h-0.5 bg-gold rounded-full mt-5 mb-7" />
             <p className="text-[rgba(255,255,255,0.72)]">
-              What started as a passion for bold street flavors became Wheelz Cafe - New Town&apos;s most talked-about food cart experience.
+              Animesh didn&apos;t follow a rulebook — he wrote his own. What began as a deep obsession with bold street food turned into Wheelz Cafe, New Town&apos;s most talked-about food cart. Every single item on the menu was born in his kitchen, tested, failed, rebuilt, and perfected until it felt exactly right.
             </p>
             <p className="mt-4 text-[rgba(255,255,255,0.72)]">
-              Animesh built every recipe from scratch, obsessing over textures, sauces, and the kind of food that makes you want to come back tomorrow.
+              He runs the cart, creates the recipes, and documents the entire raw journey on Instagram — the late nights, the experiments, the behind-the-scenes chaos that most founders hide. For Animesh, the story is just as important as the food.
             </p>
-            <p className="mt-4 text-[rgba(255,255,255,0.72)]">No shortcuts. No compromises. Just real food, real hustle, real soul.</p>
+            <div className="mt-8 flex flex-wrap gap-2">
+              <motion.div
+                className="bg-[rgba(255,255,255,0.07)] border border-[rgba(255,255,255,0.15)] rounded-full px-4 py-2 text-[0.8125rem] text-[rgba(255,255,255,0.7)]"
+                whileHover={{ borderColor: "#F5C518", color: "white", backgroundColor: "rgba(245,197,24,0.08)" }}
+                transition={{ duration: 0.2 }}
+              >
+                🔥 100% Recipes from Scratch
+              </motion.div>
+              <motion.div
+                className="bg-[rgba(255,255,255,0.07)] border border-[rgba(255,255,255,0.15)] rounded-full px-4 py-2 text-[0.8125rem] text-[rgba(255,255,255,0.7)]"
+                whileHover={{ borderColor: "#F5C518", color: "white", backgroundColor: "rgba(245,197,24,0.08)" }}
+                transition={{ duration: 0.2 }}
+              >
+                🎬 Behind the Scenes on Instagram
+              </motion.div>
+              <motion.div
+                className="bg-[rgba(255,255,255,0.07)] border border-[rgba(255,255,255,0.15)] rounded-full px-4 py-2 text-[0.8125rem] text-[rgba(255,255,255,0.7)]"
+                whileHover={{ borderColor: "#F5C518", color: "white", backgroundColor: "rgba(245,197,24,0.08)" }}
+                transition={{ duration: 0.2 }}
+              >
+                📍 New Town, Kolkata
+              </motion.div>
+            </div>
           </FadeUp>
         </div>
       </section>
 
-      <section id="visit" className="bg-mist py-28">
-        <div className="max-w-6xl mx-auto px-6">
-          <FadeUp className="text-center max-w-sm mx-auto">
+      <section id="visit" className="bg-mist py-16 md:py-28">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6">
+          <FadeUp className="text-center max-w-sm mx-auto mb-14">
             <p className="text-gold text-[0.75rem] font-semibold uppercase tracking-[0.12em] mb-3">FIND US</p>
-            <h2 className="text-midnight" style={{ fontSize: "clamp(2rem, 4vw, 3rem)", letterSpacing: "-0.015em" }}>
+            <h2 className="text-midnight" style={{ fontSize: "clamp(1.75rem, 5vw, 3rem)", letterSpacing: "-0.015em" }}>
               Visit Us
             </h2>
             <p className="mt-4 text-muted">Come find us, grab a bite, and taste the difference.</p>
           </FadeUp>
 
-          <div className="mt-14 grid grid-cols-1 lg:grid-cols-2 gap-10 items-start">
-            <FadeUp delay={0.1}>
+          <div className="flex flex-col md:flex-row gap-10 items-stretch">
+            <FadeUp delay={0.1} className="w-full md:w-1/2 flex flex-col">
               <div
-                className="rounded-2xl overflow-hidden border border-[rgba(25,25,112,0.1)]"
-                style={{ boxShadow: "0 10px 28px rgba(25,25,112,0.12)" }}
+                className="flex-1 h-full w-full h-full min-h-[520px] rounded-2xl overflow-hidden shadow-lg border border-[rgba(25,25,112,0.1)]"
               >
                 <iframe
-                  src="https://www.google.com/maps?q=Gate%204%2F6%2C%20Sree%20Ram%20Mandir%20Rd%2C%20Near%20Eco%20Park%2C%20Action%20Area%20II%2C%20New%20Town%2C%20Kolkata%2C%20West%20Bengal%20700157&output=embed"
+                  src="https://maps.google.com/maps?q=Wheelz+Cafe+Gate+4%2F6+Sree+Ram+Mandir+Rd+near+Eco+Park+Action+Area+II+New+Town+Kolkata+West+Bengal+700157+India&t=m&z=17&ie=UTF8&iwloc=near&output=embed"
                   width="100%"
-                  height="420"
-                  style={{ border: 0 }}
+                  height="100%"
+                  style={{ minHeight: "520px", border: 0, display: "block" }}
+                  allowFullScreen
                   loading="lazy"
                   referrerPolicy="no-referrer-when-downgrade"
                   title="Wheelz Cafe Location"
@@ -608,8 +638,8 @@ export default function HomePage() {
               </div>
             </FadeUp>
 
-            <FadeUp delay={0.2}>
-              <div className="bg-midnight rounded-3xl p-8 border border-[rgba(255,255,255,0.06)] h-full">
+            <FadeUp delay={0.2} className="w-full md:w-1/2">
+              <div className="bg-midnight rounded-3xl p-6 md:p-8 border border-[rgba(255,255,255,0.06)] h-full">
                 <div className="flex items-start gap-4 py-5 border-b border-[rgba(255,255,255,0.08)]">
                   <PinIcon />
                   <div>
@@ -630,7 +660,7 @@ export default function HomePage() {
                   <ClockIcon />
                   <div>
                     <p className="text-gold text-[0.75rem] uppercase tracking-[0.12em] mb-1">HOURS</p>
-                    <p className="text-[0.9375rem] text-[rgba(255,255,255,0.8)] leading-[1.6]">Wednesday - Sunday: 6:00 PM - 10:30 PM</p>
+                    <p className="text-[0.9375rem] text-[rgba(255,255,255,0.8)] leading-[1.6]">Wednesday – Sunday: 6:00 PM – 10:30 PM</p>
                     <div className="mt-2 flex items-center gap-2">
                       <p className="text-[0.9375rem] text-[rgba(255,255,255,0.8)] leading-[1.6]">Monday & Tuesday:</p>
                       <span className="rounded-full px-2.5 py-1 text-[0.75rem] font-semibold text-white" style={{ backgroundColor: "#EF4444" }}>
@@ -656,7 +686,7 @@ export default function HomePage() {
                 </div>
 
                 <motion.a
-                  href="https://maps.app.goo.gl/UVHkzBSBvkx8tdeU9"
+                  href="https://maps.app.goo.gl/VDp6KKdKHHRkFW3b9"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="mt-8 block w-full text-center rounded-full bg-gold py-4 text-midnight uppercase"
@@ -675,7 +705,7 @@ export default function HomePage() {
 
       <footer className="bg-deepnavy pt-16 pb-8 px-6">
         <FadeUp className="max-w-6xl mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-12 pb-14 border-b border-[rgba(255,255,255,0.07)] mb-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12 pb-14 border-b border-[rgba(255,255,255,0.07)] mb-8">
             <div>
               <h3 className="text-white text-[1.625rem]">WHEELZ CAFE</h3>
               <div className="w-8 h-0.5 bg-gold rounded-full mt-3 mb-4" />
@@ -721,7 +751,7 @@ export default function HomePage() {
             </div>
           </div>
 
-          <div className="flex justify-between items-center flex-wrap gap-2 text-[0.8rem] text-[rgba(255,255,255,0.28)]">
+          <div className="flex flex-col md:flex-row text-center md:text-left gap-2 text-[0.8rem] text-[rgba(255,255,255,0.28)]">
             <p>© 2025 Wheelz Cafe. All rights reserved.</p>
             <p>Made with ❤️ in Kolkata</p>
           </div>
